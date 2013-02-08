@@ -1,9 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Id:</b>
-  <%= @post.id %>
-</p>
+<h1>Viewing post</h1>
+
 
 <p>
   <b>Title:</b>
@@ -15,20 +13,6 @@
   <%= @post.content %>
 </p>
 
-<p>
-  <b>State:</b>
-  <%= @post.state %>
-</p>
-
-<p>
-  <b>Created at:</b>
-  <%= @post.created_at %>
-</p>
-
-<p>
-  <b>Updated at:</b>
-  <%= @post.updated_at %>
-</p>
 
 
 <%= link_to 'Edit', edit_post_path(@post) %> |

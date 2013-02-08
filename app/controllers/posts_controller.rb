@@ -2,8 +2,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
-
+    @posts = Post.find(:all, :conditions => { :state => 'active' })    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
@@ -25,7 +24,7 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
-
+#    @post.update_attributes({:state => 'pending'})
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @post }
@@ -73,11 +72,14 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-
     respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
+      if @post.update_attributes({:state => 'deleted'})
+        format.html { redirect_to @post, notice: 'Post was successfully deleted.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @post, notice: 'Error deleting post. Please, try again letter.' }
+        format.json { head :no_content }
+      end
     end
   end
 end
