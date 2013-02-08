@@ -25,11 +25,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.find(:all, :conditions => { :state => 'active' })    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @posts }
-    end
+     sorted_by_creation
   end
 
   # GET /posts/1
