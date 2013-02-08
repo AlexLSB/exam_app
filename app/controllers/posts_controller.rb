@@ -1,4 +1,27 @@
 class PostsController < ApplicationController
+  # GET /posts/all
+  # GET /posts/all.json
+  def index_all
+    @posts = Post.all    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @posts }
+    end
+  end
+
+  # GET /posts/bydate
+  # GET /posts/bydate.json
+  def sorted_by_creation
+    @posts = Post.all    
+    @posts.sort! { |a,b| b.created_at <=> a.created_at }
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @posts }
+    end
+  end
+
+
+
   # GET /posts
   # GET /posts.json
   def index

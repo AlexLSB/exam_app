@@ -1,4 +1,4 @@
-<h1>List of all posts </h1>
+<h1>List of active posts </h1>
 
 <table>
   <tr>
@@ -8,6 +8,8 @@
 <% @posts.each do |post| %>
   <tr>
     <td><%= link_to post.title, post %></td>
+    <td><%= post.created_at %></td>
+
   </tr>
 <% end %>
 </table>
